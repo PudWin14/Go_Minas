@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://bptujboy47ko7"]
+
+[ext_resource type="Texture2D" uid="uid://bk1i4xqa1w222" path="res://Assets/Minesweeper_LAZARUS_21x21_unexplored.png" id="1_0hng6"]
+[ext_resource type="Script" path="res://Scenes/cell.gd" id="1_uwty1"]
+
+[node name="Cell" type="TextureButton"]
+process_mode = 1
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+toggle_mode = true
+keep_pressed_outside = true
+texture_normal = ExtResource("1_0hng6")
+stretch_mode = 5
+script = ExtResource("1_uwty1")
+
+[connection signal="toggled" from="." to="." method="_on_toggled"]

@@ -1,0 +1,100 @@
+[gd_scene load_steps=2 format=3 uid="uid://cmxc644cqh1ho"]
+
+[ext_resource type="Script" path="res://Scenes/HUD.gd" id="1_6yglb"]
+
+[node name="HUD" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_6yglb")
+
+[node name="HContainer" type="HBoxContainer" parent="."]
+offset_left = 96.0
+offset_top = 46.0
+offset_right = 353.0
+offset_bottom = 134.0
+metadata/_edit_group_ = true
+
+[node name="MinusButtonContainer2" type="VBoxContainer" parent="HContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+metadata/_edit_group_ = true
+
+[node name="MinusRowButton" type="Button" parent="HContainer/MinusButtonContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "-"
+
+[node name="MinusColButton" type="Button" parent="HContainer/MinusButtonContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "-"
+
+[node name="MinusMineButton" type="Button" parent="HContainer/MinusButtonContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "-"
+
+[node name="LabelContainer" type="VBoxContainer" parent="HContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 5
+metadata/_edit_group_ = true
+
+[node name="RowsNum" type="Label" parent="HContainer/LabelContainer"]
+layout_mode = 2
+text = "Rows: 9"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColsNum" type="Label" parent="HContainer/LabelContainer"]
+layout_mode = 2
+text = "Cols: 9"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MinesNum" type="Label" parent="HContainer/LabelContainer"]
+layout_mode = 2
+text = "Number of Mines: 10"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlusButtonContainer" type="VBoxContainer" parent="HContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+metadata/_edit_group_ = true
+
+[node name="PlusRowButton" type="Button" parent="HContainer/PlusButtonContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "+"
+
+[node name="PlusColButton" type="Button" parent="HContainer/PlusButtonContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "+"
+
+[node name="PlusMineButton" type="Button" parent="HContainer/PlusButtonContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "+"
+
+[node name="NewGameButton" type="Button" parent="."]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -352.0
+offset_top = -32.0
+offset_right = -224.0
+offset_bottom = 32.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "New Game"
+
+[connection signal="pressed" from="HContainer/MinusButtonContainer2/MinusRowButton" to="." method="_on_minus_row_button_pressed"]
+[connection signal="pressed" from="HContainer/MinusButtonContainer2/MinusColButton" to="." method="_on_minus_col_button_pressed"]
+[connection signal="pressed" from="HContainer/MinusButtonContainer2/MinusMineButton" to="." method="_on_minus_mine_button_pressed"]
+[connection signal="pressed" from="HContainer/PlusButtonContainer/PlusRowButton" to="." method="_on_plus_row_button_pressed"]
+[connection signal="pressed" from="HContainer/PlusButtonContainer/PlusColButton" to="." method="_on_plus_col_button_pressed"]
+[connection signal="pressed" from="HContainer/PlusButtonContainer/PlusMineButton" to="." method="_on_plus_mine_button_pressed"]
+[connection signal="pressed" from="NewGameButton" to="." method="_on_new_game_button_pressed"]
