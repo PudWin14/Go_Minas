@@ -14,7 +14,7 @@ size_flags_vertical = 3
 toggle_mode = true
 keep_pressed_outside = true
 texture_normal = ExtResource("1_0hng6")
-stretch_mode = 5
+stretch_mode = 0
 script = ExtResource("1_uwty1")
 
 [connection signal="toggled" from="." to="." method="_on_toggled"]
