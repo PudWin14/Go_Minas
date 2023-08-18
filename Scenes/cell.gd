@@ -36,14 +36,14 @@ func click_cell_from_main(pos:Vector2):
 
 func click_cell():
 	var is_mine = GlobalVariables.cells_grid[row][col]
-	var texture = TextureRect.new()
+	var texture
 	var around_mines = count_mines(Vector2(row,col))
 	
 	if not is_mine:
 		click.emit(Vector2(row,col))
 		match around_mines:
 			0:
-				texture.texture = GlobalVariables.texture0
+				texture = GlobalVariables.texture0
 				var around_cells = []
 				for i in [-1,0,1]:
 					for j in [-1,0,1]:
@@ -51,34 +51,29 @@ func click_cell():
 							around_cells.append(Vector2(row+i,col+j))
 				click_around.emit(around_cells)
 			1:
-				texture.texture = GlobalVariables.texture1
+				texture = GlobalVariables.texture1
 			2:
-				texture.texture = GlobalVariables.texture2
+				texture = GlobalVariables.texture2
 			3:
-				texture.texture = GlobalVariables.texture3
+				texture = GlobalVariables.texture3
 			4:
-				texture.texture = GlobalVariables.texture4
+				texture = GlobalVariables.texture4
 			5:
-				texture.texture = GlobalVariables.texture5
+				texture = GlobalVariables.texture5
 			6:
-				texture.texture = GlobalVariables.texture6
+				texture = GlobalVariables.texture6
 			7:
-				texture.texture = GlobalVariables.texture7
+				texture = GlobalVariables.texture7
 			8:
-				texture.texture = GlobalVariables.texture8
+				texture = GlobalVariables.texture8
 				
 	else:
-		texture.texture = GlobalVariables.texture_mine_hit
+		texture = GlobalVariables.texture_mine_hit
 		game_over.emit()
 	
-	texture.size = size
-	texture.position = position
-	texture.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	texture.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	texture_disabled = texture
 	
-	hide()
-	add_sibling(texture)
-	queue_free()
+	disabled = true
 
 
 
