@@ -5,10 +5,10 @@
 
 [node name="Cell" type="TextureButton"]
 process_mode = 1
-offset_left = -16.0
-offset_top = -16.0
-offset_right = 16.0
-offset_bottom = 16.0
+offset_left = -12.0
+offset_top = -12.0
+offset_right = 12.0
+offset_bottom = 12.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 toggle_mode = true
