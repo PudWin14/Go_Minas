@@ -8,7 +8,7 @@ var MAX_COLS = GlobalVariables.MAX_COLS
 
 signal game_over
 signal click(pos:Vector2)
-signal click_around(positions : Array)
+signal click_around(pos : Vector2)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -44,12 +44,7 @@ func click_cell():
 		match around_mines:
 			0:
 				texture = GlobalVariables.texture0
-				var around_cells = []
-				for i in [-1,0,1]:
-					for j in [-1,0,1]:
-						if i or j:
-							around_cells.append(Vector2(row+i,col+j))
-				click_around.emit(around_cells)
+				click_around.emit(Vector2(row,col))
 			1:
 				texture = GlobalVariables.texture1
 			2:
@@ -74,6 +69,7 @@ func click_cell():
 	texture_disabled = texture
 	
 	disabled = true
+#	print(row,col," : ",$"../..".find_around_cells(Vector2(row,col)))
 
 
 

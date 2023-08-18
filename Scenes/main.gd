@@ -28,14 +28,11 @@ func end_game():
 
 
 
-func click_around_cells(positions : Array):
+func click_around_cells(cell : Vector2):
 #	print(positions)
+	var positions = find_around_cells(cell)
 	for pos in positions:
-		if (pos.x < 0) or (pos.x >= GlobalVariables.MAX_ROWS):
-			pass
-		elif ( pos.y < 0) or (pos.y >= GlobalVariables.MAX_COLS):
-			pass
-		elif not status_grid[pos.x][pos.y]:
+		if not status_grid[pos.x][pos.y]:
 			pass
 		else :
 			click_cell_main.emit(pos)
@@ -113,3 +110,20 @@ func restart_game():
 	
 	$MessageLabel.hide()
 	new_game()
+
+
+
+func find_around_cells(pos:Vector2):
+	var around_cells = []
+	
+	for i in [-1,0,1]:
+		for j in [-1,0,1]:
+			if i or j:
+				if (pos.x+i < 0) or (pos.x+i >= GlobalVariables.MAX_ROWS):
+					pass
+				elif ( pos.y+j < 0) or (pos.y+j >= GlobalVariables.MAX_COLS):
+					pass
+				else:
+					around_cells.append(pos + Vector2(i,j))
+	
+	return around_cells
