@@ -43,10 +43,11 @@ func create_grid(num_rows, num_cols, num_mines):
 		grid[row].resize(num_cols)
 		grid[row].fill(0)
 	
-	var register = []
+	
 	for mine in range(num_mines):
 		
 		if mine >= (num_rows * num_cols)-1:
+			NUM_MINES -=1
 			break
 		
 		var success = false
@@ -54,13 +55,14 @@ func create_grid(num_rows, num_cols, num_mines):
 			var row = randi() % num_rows
 			var col = randi() % num_cols
 			
-			if register.find([row,col]) != -1:
-				continue
-			
-			if not grid[row][col]:
-				grid[row][col] = 1
+			if grid[row][col] >= 0:
+				grid[row][col] = -1
 				success = true
-				register.append([row,col])
+				var around_positions = find_around_cells(Vector2(row,col))
+				
+				for pos in around_positions:
+					if grid[pos.x][pos.y] >=0:
+						grid[pos.x][pos.y] += 1
 	
 	return grid
 
@@ -71,9 +73,9 @@ func find_around_cells(pos:Vector2):
 	for i in [-1,0,1]:
 		for j in [-1,0,1]:
 			if i or j:
-				if (pos.x+i < 0) or (pos.x+i >= GlobalVariables.MAX_ROWS):
+				if (pos.x+i < 0) or (pos.x+i >= MAX_ROWS):
 					pass
-				elif ( pos.y+j < 0) or (pos.y+j >= GlobalVariables.MAX_COLS):
+				elif ( pos.y+j < 0) or (pos.y+j >= MAX_COLS):
 					pass
 				else:
 					around_cells.append(pos + Vector2(i,j))

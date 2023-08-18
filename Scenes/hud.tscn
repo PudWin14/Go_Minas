@@ -91,6 +91,20 @@ grow_horizontal = 0
 grow_vertical = 2
 text = "New Game"
 
+[node name="MessageLabel" type="Label" parent="."]
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -77.5
+offset_top = 100.0
+offset_right = 77.5
+offset_bottom = 165.0
+grow_horizontal = 2
+text = "Game Over!!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="pressed" from="HContainer/MinusButtonContainer2/MinusRowButton" to="." method="_on_minus_row_button_pressed"]
 [connection signal="pressed" from="HContainer/MinusButtonContainer2/MinusColButton" to="." method="_on_minus_col_button_pressed"]
 [connection signal="pressed" from="HContainer/MinusButtonContainer2/MinusMineButton" to="." method="_on_minus_mine_button_pressed"]

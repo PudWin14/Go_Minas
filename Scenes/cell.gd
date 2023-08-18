@@ -37,46 +37,40 @@ func click_cell_from_main(pos:Vector2):
 func click_cell():
 	var is_mine = GlobalVariables.cells_grid[row][col]
 	var texture
-	var around_mines = count_mines(Vector2(row,col))
 	
-	if not is_mine:
-		click.emit(Vector2(row,col))
-		match around_mines:
-			0:
-				texture = GlobalVariables.texture0
-				click_around.emit(Vector2(row,col))
-			1:
-				texture = GlobalVariables.texture1
-			2:
-				texture = GlobalVariables.texture2
-			3:
-				texture = GlobalVariables.texture3
-			4:
-				texture = GlobalVariables.texture4
-			5:
-				texture = GlobalVariables.texture5
-			6:
-				texture = GlobalVariables.texture6
-			7:
-				texture = GlobalVariables.texture7
-			8:
-				texture = GlobalVariables.texture8
-				
-	else:
-		texture = GlobalVariables.texture_mine_hit
-		game_over.emit()
+	match is_mine:
+		-1:
+			texture = GlobalVariables.texture_mine_hit
+			game_over.emit()
+		0:
+			texture = GlobalVariables.texture0
+			click.emit(Vector2(row,col))
+			click_around.emit(Vector2(row,col))
+		1:
+			texture = GlobalVariables.texture1
+			click.emit(Vector2(row,col))
+		2:
+			texture = GlobalVariables.texture2
+			click.emit(Vector2(row,col))
+		3:
+			texture = GlobalVariables.texture3
+			click.emit(Vector2(row,col))
+		4:
+			texture = GlobalVariables.texture4
+			click.emit(Vector2(row,col))
+		5:
+			texture = GlobalVariables.texture5
+			click.emit(Vector2(row,col))
+		6:
+			texture = GlobalVariables.texture6
+			click.emit(Vector2(row,col))
+		7:
+			texture = GlobalVariables.texture7
+			click.emit(Vector2(row,col))
+		8:
+			texture = GlobalVariables.texture8
+			click.emit(Vector2(row,col))
 	
 	texture_disabled = texture
 	
 	disabled = true
-#	print(row,col," : ",$"../..".find_around_cells(Vector2(row,col)))
-
-
-
-func count_mines(actual_pos:Vector2):
-	var total_mines = 0
-	var around_mines = GlobalVariables.find_around_cells(actual_pos)
-	for mine in around_mines:
-		total_mines += GlobalVariables.cells_grid[mine.x][mine.y]
-
-	return total_mines

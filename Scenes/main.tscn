@@ -22,18 +22,4 @@ theme_override_constants/h_separation = 0
 theme_override_constants/v_separation = 0
 columns = 4
 
-[node name="MessageLabel" type="Label" parent="."]
-visible = false
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -77.5
-offset_top = 100.0
-offset_right = 77.5
-offset_bottom = 165.0
-grow_horizontal = 2
-text = "Game Over!!"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="HUD" parent="." instance=ExtResource("2_tk6xn")]

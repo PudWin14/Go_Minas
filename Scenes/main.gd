@@ -11,17 +11,13 @@ func _ready():
 	# Create a grid of status of cells. 1 if cover. 0 if uncover
 	status_grid = new_status_grid()
 	$HUD.new_game_pressed.connect(restart_game)
+	$HUD.update_hud()
 
 
 
 func end_game():
-#	print("Game Overrr")
-	
-	$MessageLabel.text = "Game Over!!"
-	$MessageLabel.show()
-	
-#	restart_game()
 	get_tree().paused = true
+	$HUD.game_over()
 
 
 func click_around_cells(cell : Vector2):
@@ -53,8 +49,7 @@ func win_check():
 			total_uncovered += status_grid[row][col]
 	
 	if total_uncovered == GlobalVariables.NUM_MINES:
-		$MessageLabel.text = "WIN!!!!"
-		$MessageLabel.show()
+		$HUD.win()
 		return true
 	return false
 
@@ -87,24 +82,23 @@ func new_game():
 	$CellsGrid.hide()
 	delate_cells()
 	display_cells(GlobalVariables.MAX_ROWS,GlobalVariables.MAX_COLS)
-	await get_tree().create_timer(0.15).timeout
 	$CellsGrid.show()
 
 func new_status_grid():
-	var new_status_grid = []
+	var new_st_grid = []
 	for row in range(GlobalVariables.MAX_ROWS):
-		new_status_grid.append([])
-		new_status_grid[row].resize(GlobalVariables.MAX_COLS)
-		new_status_grid[row].fill(1)
+		new_st_grid.append([])
+		new_st_grid[row].resize(GlobalVariables.MAX_COLS)
+		new_st_grid[row].fill(1)
 		
-	return new_status_grid
+	return new_st_grid
 
 
 
 func restart_game():
 	get_tree().paused = false
 	
-	$MessageLabel.hide()
+	$HUD.hide_message()
 	new_game()
 
 

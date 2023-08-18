@@ -14,7 +14,8 @@ func _on_plus_row_button_pressed():
 	GlobalVariables.new_max_rows += 1
 	update_hud()
 func _on_minus_row_button_pressed():
-	GlobalVariables.new_max_rows -= 1
+	if GlobalVariables.new_max_rows >2:
+		GlobalVariables.new_max_rows -= 1
 	update_hud()
 
 
@@ -22,7 +23,8 @@ func _on_plus_col_button_pressed():
 	GlobalVariables.new_max_cols += 1
 	update_hud()
 func _on_minus_col_button_pressed():
-	GlobalVariables.new_max_cols -= 1
+	if GlobalVariables.new_max_cols >2:
+		GlobalVariables.new_max_cols -= 1
 	update_hud()
 
 
@@ -30,9 +32,22 @@ func _on_plus_mine_button_pressed():
 	GlobalVariables.new_num_mines += 1
 	update_hud()
 func _on_minus_mine_button_pressed():
-	GlobalVariables.new_num_mines -= 1
+	if GlobalVariables.new_num_mines >1:
+		GlobalVariables.new_num_mines -= 1
 	update_hud()
 
 
 func _on_new_game_button_pressed():
 	new_game_pressed.emit()
+
+
+func game_over():
+	$MessageLabel.text = "Game Over!!"
+	$MessageLabel.show()
+
+func win():
+	$MessageLabel.text = "WIN!!!!"
+	$MessageLabel.show()
+
+func hide_message():
+	$MessageLabel.hide()
