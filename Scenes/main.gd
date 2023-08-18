@@ -1,7 +1,6 @@
 extends Node
 
 var CellScene = preload("res://Scenes/cell.tscn")
-var CellScript = preload("res://Scenes/cell.gd")
 var status_grid = []
 
 signal click_cell_main(pos : Vector2)
@@ -12,7 +11,6 @@ func _ready():
 	# Create a grid of status of cells. 1 if cover. 0 if uncover
 	status_grid = new_status_grid()
 	$HUD.new_game_pressed.connect(restart_game)
-	
 
 
 
@@ -24,13 +22,11 @@ func end_game():
 	
 #	restart_game()
 	get_tree().paused = true
-	
-
 
 
 func click_around_cells(cell : Vector2):
 #	print(positions)
-	var positions = find_around_cells(cell)
+	var positions = GlobalVariables.find_around_cells(cell)
 	for pos in positions:
 		if not status_grid[pos.x][pos.y]:
 			pass
@@ -113,17 +109,4 @@ func restart_game():
 
 
 
-func find_around_cells(pos:Vector2):
-	var around_cells = []
-	
-	for i in [-1,0,1]:
-		for j in [-1,0,1]:
-			if i or j:
-				if (pos.x+i < 0) or (pos.x+i >= GlobalVariables.MAX_ROWS):
-					pass
-				elif ( pos.y+j < 0) or (pos.y+j >= GlobalVariables.MAX_COLS):
-					pass
-				else:
-					around_cells.append(pos + Vector2(i,j))
-	
-	return around_cells
+

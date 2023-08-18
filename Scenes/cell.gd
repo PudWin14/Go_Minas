@@ -75,12 +75,8 @@ func click_cell():
 
 func count_mines(actual_pos:Vector2):
 	var total_mines = 0
-	var index_x = [actual_pos.x-1,actual_pos.x,actual_pos.x+1]
-	var index_y = [actual_pos.y-1,actual_pos.y,actual_pos.y+1]
-	
-	for i in index_x:
-		if (i >=0) and (i < MAX_ROWS):
-			for j in index_y:
-				if (j >=0) and (j < MAX_COLS):
-					total_mines += GlobalVariables.cells_grid[i][j]
+	var around_mines = GlobalVariables.find_around_cells(actual_pos)
+	for mine in around_mines:
+		total_mines += GlobalVariables.cells_grid[mine.x][mine.y]
+
 	return total_mines

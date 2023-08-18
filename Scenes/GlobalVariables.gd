@@ -63,3 +63,19 @@ func create_grid(num_rows, num_cols, num_mines):
 				register.append([row,col])
 	
 	return grid
+
+
+func find_around_cells(pos:Vector2):
+	var around_cells = []
+	
+	for i in [-1,0,1]:
+		for j in [-1,0,1]:
+			if i or j:
+				if (pos.x+i < 0) or (pos.x+i >= GlobalVariables.MAX_ROWS):
+					pass
+				elif ( pos.y+j < 0) or (pos.y+j >= GlobalVariables.MAX_COLS):
+					pass
+				else:
+					around_cells.append(pos + Vector2(i,j))
+	
+	return around_cells
