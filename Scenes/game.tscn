@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://4pteh0vnv2rr"]
+
+[ext_resource type="Script" path="res://Scenes/game.gd" id="1_82r8g"]
+[ext_resource type="PackedScene" uid="uid://cmxc644cqh1ho" path="res://Scenes/hud.tscn" id="2_yro2c"]
+
+[node name="Game" type="Node"]
+script = ExtResource("1_82r8g")
+
+[node name="HUD" parent="." instance=ExtResource("2_yro2c")]
+
+[node name="CellsGrid" type="GridContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -176.0
+offset_top = -174.0
+offset_right = -176.0
+offset_bottom = -174.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0

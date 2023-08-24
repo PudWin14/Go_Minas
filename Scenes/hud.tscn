@@ -102,6 +102,13 @@ text = "Game Over!!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Button" type="Button" parent="."]
+offset_left = 192.0
+offset_top = 448.0
+offset_right = 320.0
+offset_bottom = 512.0
+text = "Back"
+
 [connection signal="pressed" from="HContainer/MinusButtonContainer2/MinusRowButton" to="." method="_on_minus_row_button_pressed"]
 [connection signal="pressed" from="HContainer/MinusButtonContainer2/MinusColButton" to="." method="_on_minus_col_button_pressed"]
 [connection signal="pressed" from="HContainer/MinusButtonContainer2/MinusMineButton" to="." method="_on_minus_mine_button_pressed"]
@@ -109,3 +116,4 @@ vertical_alignment = 1
 [connection signal="pressed" from="HContainer/PlusButtonContainer/PlusColButton" to="." method="_on_plus_col_button_pressed"]
 [connection signal="pressed" from="HContainer/PlusButtonContainer/PlusMineButton" to="." method="_on_plus_mine_button_pressed"]
 [connection signal="pressed" from="NewGameButton" to="." method="_on_new_game_button_pressed"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
