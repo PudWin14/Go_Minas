@@ -1,6 +1,7 @@
 extends Control
 
-
+func _ready():
+	get_tree().paused = false
 
 func _on_easy_button_pressed():
 	GlobalVariables.new_max_cols = 9

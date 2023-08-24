@@ -2,6 +2,7 @@ extends Node
 
 var CellScene = preload("res://Scenes/cell.tscn")
 var status_grid = []
+var time
 
 @onready var CellsGrid = get_node("CellsGrid")
 
@@ -10,6 +11,7 @@ signal click_cell_main(pos : Vector2)
 func _ready():
 	
 	display_cells(GlobalVariables.MAX_ROWS,GlobalVariables.MAX_COLS)
+	time = 0
 	# Create a grid of status of cells. 1 if cover. 0 if uncover
 	status_grid = new_status_grid()
 	$HUD.new_game_pressed.connect(restart_game)
@@ -18,6 +20,7 @@ func _ready():
 
 func end_game():
 	get_tree().paused = true
+	$Timer.stop()
 	$HUD.game_over()
 
 
@@ -33,6 +36,12 @@ func click_around_cells(cell : Vector2):
 
 
 func click_free_cell(pos):
+	
+	if $Timer.is_stopped():
+		$Timer.start()
+		time = 0
+		$HUD.update_time(time)
+	
 	uncover_cell(pos)
 	if win_check():
 #		restart_game()
@@ -86,6 +95,9 @@ func new_game():
 	CellsGrid.hide()
 	delate_cells()
 	display_cells(GlobalVariables.MAX_ROWS,GlobalVariables.MAX_COLS)
+	time = 0
+	$Timer.stop()
+	$HUD.update_time(time)
 	CellsGrid.show()
 
 func new_status_grid():
@@ -107,4 +119,6 @@ func restart_game():
 
 
 
-
+func _on_timer_timeout():
+	time += 1
+	$HUD.update_time(time)

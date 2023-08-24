@@ -1,6 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://cmxc644cqh1ho"]
+[gd_scene load_steps=4 format=3 uid="uid://cmxc644cqh1ho"]
 
 [ext_resource type="Script" path="res://Scenes/HUD.gd" id="1_6yglb"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_tyc5e"]
+font_size = 25
+
+[sub_resource type="LabelSettings" id="LabelSettings_jyan1"]
+font_size = 25
 
 [node name="HUD" type="CanvasLayer"]
 process_mode = 3
@@ -88,6 +94,13 @@ offset_bottom = 32.0
 grow_vertical = 2
 text = "New Game"
 
+[node name="BackButton" type="Button" parent="."]
+offset_left = 192.0
+offset_top = 448.0
+offset_right = 320.0
+offset_bottom = 512.0
+text = "Back"
+
 [node name="MessageLabel" type="Label" parent="."]
 visible = false
 anchors_preset = 5
@@ -99,15 +112,23 @@ offset_right = 83.0
 offset_bottom = 113.0
 grow_horizontal = 2
 text = "Game Over!!"
+label_settings = SubResource("LabelSettings_tyc5e")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Button" type="Button" parent="."]
-offset_left = 192.0
-offset_top = 448.0
-offset_right = 320.0
-offset_bottom = 512.0
-text = "Back"
+[node name="TimeLabel" type="Label" parent="."]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 232.0
+offset_top = -132.0
+offset_right = 280.0
+offset_bottom = -92.0
+grow_vertical = 2
+text = "0"
+label_settings = SubResource("LabelSettings_jyan1")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="pressed" from="HContainer/MinusButtonContainer2/MinusRowButton" to="." method="_on_minus_row_button_pressed"]
 [connection signal="pressed" from="HContainer/MinusButtonContainer2/MinusColButton" to="." method="_on_minus_col_button_pressed"]
@@ -116,4 +137,4 @@ text = "Back"
 [connection signal="pressed" from="HContainer/PlusButtonContainer/PlusColButton" to="." method="_on_plus_col_button_pressed"]
 [connection signal="pressed" from="HContainer/PlusButtonContainer/PlusMineButton" to="." method="_on_plus_mine_button_pressed"]
 [connection signal="pressed" from="NewGameButton" to="." method="_on_new_game_button_pressed"]
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="BackButton" to="." method="_on_button_pressed"]
