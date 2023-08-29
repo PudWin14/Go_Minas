@@ -6,6 +6,14 @@ extends TextureButton
 var MAX_ROWS = GlobalVariables.MAX_ROWS
 var MAX_COLS = GlobalVariables.MAX_COLS
 
+#Status:
+#	0 -> Explored Cell
+#	1 -> Unexplored Cell
+#	2 -> Flag Cell
+	
+var status = 1
+
+
 signal game_over
 signal click(pos:Vector2)
 signal click_around(pos : Vector2)
@@ -18,7 +26,6 @@ func _ready():
 
 func _on_toggled(_button_pressed):
 	if Input.is_action_just_released("left_click"):
-#		print("LEFT")
 		click_cell()
 		
 	if Input.is_action_just_released("right_click"):
@@ -29,7 +36,7 @@ func _on_toggled(_button_pressed):
 
 
 func click_cell_from_main(pos:Vector2):
-	if pos == Vector2(row,col):
+	if (pos == Vector2(row,col)) and status:
 		click_cell()
 	else:
 		pass
@@ -37,6 +44,7 @@ func click_cell_from_main(pos:Vector2):
 func click_cell():
 	var is_mine = GlobalVariables.cells_grid[row][col]
 	var texture
+	status = 0
 	
 	match is_mine:
 		-1:

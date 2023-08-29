@@ -1,7 +1,6 @@
 extends Node
 
 var CellScene = preload("res://Scenes/cell.tscn")
-var status_grid = []
 var time
 
 @onready var CellsGrid = get_node("CellsGrid")
@@ -12,8 +11,7 @@ func _ready():
 	
 	display_cells(GlobalVariables.MAX_ROWS,GlobalVariables.MAX_COLS)
 	time = 0
-	# Create a grid of status of cells. 1 if cover. 0 if uncover
-	status_grid = new_status_grid()
+	
 	$HUD.new_game_pressed.connect(restart_game)
 	$HUD.update_hud()
 
@@ -25,14 +23,10 @@ func end_game():
 
 
 func click_around_cells(cell : Vector2):
-#	print(positions)
+	
 	var positions = GlobalVariables.find_around_cells(cell)
 	for pos in positions:
-		if not status_grid[pos.x][pos.y]:
-			pass
-		else :
-			click_cell_main.emit(pos)
-
+		click_cell_main.emit(pos)
 
 
 func click_free_cell(pos):
@@ -42,21 +36,20 @@ func click_free_cell(pos):
 		time = 0
 		$HUD.update_time(time)
 	
-	uncover_cell(pos)
+#	uncover_cell(pos)
 	if win_check():
 #		restart_game()
 		get_tree().paused = true
 		
 	
 
-func uncover_cell(pos:Vector2):
-	status_grid[pos.x][pos.y] = 0
 
 func win_check():
 	var total_uncovered = 0
-	for row in GlobalVariables.MAX_ROWS:
-		for col in GlobalVariables.MAX_COLS:
-			total_uncovered += status_grid[row][col]
+	
+	for cell in CellsGrid.get_children():
+		if cell.status ==1:
+			total_uncovered += 1
 	
 	if total_uncovered == GlobalVariables.NUM_MINES:
 		$HUD.win()
@@ -91,7 +84,6 @@ func delate_cells():
 
 func new_game():
 	GlobalVariables.new_game()
-	status_grid = new_status_grid()
 	CellsGrid.hide()
 	delate_cells()
 	display_cells(GlobalVariables.MAX_ROWS,GlobalVariables.MAX_COLS)
@@ -99,15 +91,6 @@ func new_game():
 	$Timer.stop()
 	$HUD.update_time(time)
 	CellsGrid.show()
-
-func new_status_grid():
-	var new_st_grid = []
-	for row in range(GlobalVariables.MAX_ROWS):
-		new_st_grid.append([])
-		new_st_grid[row].resize(GlobalVariables.MAX_COLS)
-		new_st_grid[row].fill(1)
-		
-	return new_st_grid
 
 
 
