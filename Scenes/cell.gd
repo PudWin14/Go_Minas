@@ -10,26 +10,36 @@ var MAX_COLS = GlobalVariables.MAX_COLS
 #	0 -> Explored Cell
 #	1 -> Unexplored Cell
 #	2 -> Flag Cell
-	
 var status = 1
-
 
 signal game_over
 signal click(pos:Vector2)
 signal click_around(pos : Vector2)
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 #	print("row:",row," col:",col)
 	pass
 
+func _process(delta):
+	match status:
+		1:
+			texture_normal = GlobalVariables.texture_uncovered
+		2:
+			texture_normal = GlobalVariables.texture_flag
 
 func _on_toggled(_button_pressed):
 	if Input.is_action_just_released("left_click"):
-		click_cell()
+		if status == 1:
+			click_cell()
 		
 	if Input.is_action_just_released("right_click"):
-		print("RIGHT")
+		if status == 1:
+			status = 2
+		elif  status == 2:
+			status = 1
+		
 	if Input.is_action_just_released("middle_click"):
 		print("MIDDLE")
 

@@ -24,6 +24,9 @@ var texture8 = load("res://Assets/Minesweeper_LAZARUS_21x21_8.png")
 var texture_mine = load("res://Assets/Minesweeper_LAZARUS_21x21_mine.png")
 var texture_mine_hit = load("res://Assets/Minesweeper_LAZARUS_21x21_mine_hit.png")
 
+var texture_flag = load("res://Assets/Minesweeper_LAZARUS_21x21_flag.png")
+var texture_uncovered = load("res://Assets/Minesweeper_LAZARUS_21x21_unexplored.png")
+
 
 func _ready():
 #	print(cells_grid)

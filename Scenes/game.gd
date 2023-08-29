@@ -48,7 +48,7 @@ func win_check():
 	var total_uncovered = 0
 	
 	for cell in CellsGrid.get_children():
-		if cell.status ==1:
+		if cell.status:
 			total_uncovered += 1
 	
 	if total_uncovered == GlobalVariables.NUM_MINES:
