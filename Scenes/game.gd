@@ -8,7 +8,6 @@ var time
 signal click_cell_main(pos : Vector2)
 
 func _ready():
-	
 	display_cells(GlobalVariables.MAX_ROWS,GlobalVariables.MAX_COLS)
 	time = 0
 	
@@ -29,7 +28,7 @@ func click_around_cells(cell : Vector2):
 		click_cell_main.emit(pos)
 
 
-func click_free_cell(pos):
+func click_free_cell():
 	
 	if $Timer.is_stopped():
 		$Timer.start()
@@ -72,6 +71,7 @@ func display_cells(num_rows,num_cols):
 			new_cell.game_over.connect(end_game)
 			new_cell.click.connect(click_free_cell)
 			new_cell.click_around.connect(click_around_cells)
+			new_cell.find_around_status.connect(find_status_around)
 			click_cell_main.connect(new_cell.click_cell_from_main)
 			
 			CellsGrid.add_child(new_cell)
@@ -105,3 +105,21 @@ func restart_game():
 func _on_timer_timeout():
 	time += 1
 	$HUD.update_time(time)
+
+
+func find_status_around(pos: Vector2):
+	var around_positions = GlobalVariables.find_around_cells(pos)
+	var num_flags = 0
+	
+	for cell in $CellsGrid.get_children():
+		
+		if around_positions.find(cell.my_pos) == -1:
+			continue
+		
+		if cell.status == 2:
+			num_flags += 1
+	
+	GlobalVariables.around_flags = num_flags
+	
+	if num_flags >= GlobalVariables.cells_grid[pos.x][pos.y]:
+		click_around_cells(pos)

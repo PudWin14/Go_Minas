@@ -2,6 +2,7 @@ extends TextureButton
 
 @export var row : int
 @export var col : int
+@onready var my_pos = Vector2(row,col)
 
 var MAX_ROWS = GlobalVariables.MAX_ROWS
 var MAX_COLS = GlobalVariables.MAX_COLS
@@ -13,8 +14,9 @@ var MAX_COLS = GlobalVariables.MAX_COLS
 var status = 1
 
 signal game_over
-signal click(pos:Vector2)
+signal click()
 signal click_around(pos : Vector2)
+signal find_around_status(positions : Vector2)
 
 
 # Called when the node enters the scene tree for the first time.
@@ -41,12 +43,13 @@ func _on_toggled(_button_pressed):
 			status = 1
 		
 	if Input.is_action_just_released("middle_click"):
-		print("MIDDLE")
+		if not status:
+			clear_around()
 
 
 
 func click_cell_from_main(pos:Vector2):
-	if (pos == Vector2(row,col)) and status:
+	if (pos == my_pos) and (status == 1):
 		click_cell()
 	else:
 		pass
@@ -62,33 +65,39 @@ func click_cell():
 			game_over.emit()
 		0:
 			texture = GlobalVariables.texture0
-			click.emit(Vector2(row,col))
-			click_around.emit(Vector2(row,col))
+			click.emit()
+			click_around.emit(my_pos)
 		1:
 			texture = GlobalVariables.texture1
-			click.emit(Vector2(row,col))
+			click.emit()
 		2:
 			texture = GlobalVariables.texture2
-			click.emit(Vector2(row,col))
+			click.emit()
 		3:
 			texture = GlobalVariables.texture3
-			click.emit(Vector2(row,col))
+			click.emit()
 		4:
 			texture = GlobalVariables.texture4
-			click.emit(Vector2(row,col))
+			click.emit()
 		5:
 			texture = GlobalVariables.texture5
-			click.emit(Vector2(row,col))
+			click.emit()
 		6:
 			texture = GlobalVariables.texture6
-			click.emit(Vector2(row,col))
+			click.emit()
 		7:
 			texture = GlobalVariables.texture7
-			click.emit(Vector2(row,col))
+			click.emit()
 		8:
 			texture = GlobalVariables.texture8
-			click.emit(Vector2(row,col))
+			click.emit()
 	
-	texture_disabled = texture
-	
-	disabled = true
+	texture_normal = texture
+#	texture_disabled = texture
+#
+#	disabled = true
+
+func clear_around():
+	find_around_status.emit(my_pos)
+	print(GlobalVariables.around_flags)
+#	print("MIDDLE")

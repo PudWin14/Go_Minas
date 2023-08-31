@@ -9,6 +9,8 @@ var new_max_rows = MAX_ROWS
 var new_max_cols = MAX_COLS
 var new_num_mines = NUM_MINES
 
+var around_flags = 0
+
 var cells_grid = create_grid(MAX_ROWS,MAX_COLS,NUM_MINES)
 
 var texture0 = load("res://Assets/Minesweeper_LAZARUS_21x21_0.png")
