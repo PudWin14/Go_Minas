@@ -19,11 +19,6 @@ signal click_around(pos : Vector2)
 signal find_around_status(positions : Vector2)
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-#	print("row:",row," col:",col)
-	pass
-
 func _process(delta):
 	match status:
 		1:
@@ -93,11 +88,17 @@ func click_cell():
 			click.emit()
 	
 	texture_normal = texture
-#	texture_disabled = texture
-#
-#	disabled = true
+
 
 func clear_around():
 	find_around_status.emit(my_pos)
-	print(GlobalVariables.around_flags)
-#	print("MIDDLE")
+
+
+func win():
+	if status == 1:
+		status = 2
+		texture_normal = GlobalVariables.texture_flag
+
+func lose():
+	if (status == 1) and (GlobalVariables.cells_grid[row][col] <0):
+		texture_normal = GlobalVariables.texture_mine

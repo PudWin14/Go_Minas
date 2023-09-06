@@ -6,6 +6,8 @@ var time
 @onready var CellsGrid = get_node("CellsGrid")
 
 signal click_cell_main(pos : Vector2)
+signal win
+signal lose
 
 func _ready():
 	display_cells(GlobalVariables.MAX_ROWS,GlobalVariables.MAX_COLS)
@@ -16,9 +18,13 @@ func _ready():
 
 
 func end_game():
-	get_tree().paused = true
 	$Timer.stop()
 	$HUD.game_over()
+	
+	lose.emit()
+	
+	get_tree().paused = true
+
 
 
 func click_around_cells(cell : Vector2):
@@ -52,6 +58,7 @@ func win_check():
 	
 	if total_uncovered == GlobalVariables.NUM_MINES:
 		$HUD.win()
+		win.emit()
 		return true
 	return false
 
@@ -72,7 +79,10 @@ func display_cells(num_rows,num_cols):
 			new_cell.click.connect(click_free_cell)
 			new_cell.click_around.connect(click_around_cells)
 			new_cell.find_around_status.connect(find_status_around)
+			
 			click_cell_main.connect(new_cell.click_cell_from_main)
+			win.connect(new_cell.win)
+			lose.connect(new_cell.lose)
 			
 			CellsGrid.add_child(new_cell)
 
@@ -118,8 +128,6 @@ func find_status_around(pos: Vector2):
 		
 		if cell.status == 2:
 			num_flags += 1
-	
-	GlobalVariables.around_flags = num_flags
 	
 	if num_flags >= GlobalVariables.cells_grid[pos.x][pos.y]:
 		click_around_cells(pos)
