@@ -60,35 +60,34 @@ func click_cell():
 			game_over.emit()
 		0:
 			texture = GlobalVariables.texture0
-			click.emit()
 			click_around.emit(my_pos)
 		1:
 			texture = GlobalVariables.texture1
-			click.emit()
 		2:
 			texture = GlobalVariables.texture2
-			click.emit()
 		3:
 			texture = GlobalVariables.texture3
-			click.emit()
 		4:
 			texture = GlobalVariables.texture4
-			click.emit()
 		5:
 			texture = GlobalVariables.texture5
-			click.emit()
 		6:
 			texture = GlobalVariables.texture6
-			click.emit()
 		7:
 			texture = GlobalVariables.texture7
-			click.emit()
 		8:
 			texture = GlobalVariables.texture8
-			click.emit()
 	
 	texture_normal = texture
+	if is_mine != -1:
+		click.emit()
+		play_animation()
 
+func play_animation():
+	$TextureRect.show()
+	$AnimationPlayer.play("uncover_cell")
+	await $AnimationPlayer.animation_finished
+	$TextureRect.queue_free()
 
 func clear_around():
 	find_around_status.emit(my_pos)

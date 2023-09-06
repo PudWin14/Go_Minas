@@ -41,11 +41,8 @@ func click_free_cell():
 		time = 0
 		$HUD.update_time(time)
 	
-#	uncover_cell(pos)
 	if win_check():
-#		restart_game()
-		get_tree().paused = true
-		
+		$Timer.stop()
 	
 
 
