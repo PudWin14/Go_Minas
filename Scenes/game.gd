@@ -16,6 +16,9 @@ func _ready():
 	$HUD.new_game_pressed.connect(restart_game)
 	$HUD.update_hud()
 
+func _process(delta):
+	if CellsGrid.size.y != GlobalVariables.y_size:
+		CellsGrid.size.y = GlobalVariables.y_size
 
 func end_game():
 	$Timer.stop()
@@ -63,7 +66,7 @@ func win_check():
 func display_cells(num_rows,num_cols):
 	
 	CellsGrid.columns = num_cols
-	CellsGrid.size = Vector2(24*num_cols,24*num_rows)
+	CellsGrid.size = Vector2(GlobalVariables.x_size,GlobalVariables.y_size)
 	
 	for row in num_rows:
 		for col in num_cols:

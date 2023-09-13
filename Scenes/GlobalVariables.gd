@@ -9,6 +9,8 @@ var new_max_rows = MAX_ROWS
 var new_max_cols = MAX_COLS
 var new_num_mines = NUM_MINES
 
+var x_size = MAX_COLS * 24
+var y_size = MAX_ROWS * 24
 
 var cells_grid = create_grid(MAX_ROWS,MAX_COLS,NUM_MINES)
 
@@ -37,6 +39,8 @@ func new_game():
 	MAX_ROWS = new_max_rows
 	MAX_COLS = new_max_cols
 	NUM_MINES = new_num_mines
+	x_size = MAX_COLS * 24
+	y_size = MAX_ROWS * 24
 	cells_grid = create_grid(MAX_ROWS,MAX_COLS,NUM_MINES)
 
 func create_grid(num_rows, num_cols, num_mines):
