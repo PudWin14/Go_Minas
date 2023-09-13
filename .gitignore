@@ -7,6 +7,7 @@ export.cfg
 export_presets.cfg
 *.exe
 *.pck
+*.diff
 
 # Imported translations (automatically generated from CSV files)
 *.translation
