@@ -30,6 +30,7 @@ var texture_mine_hit = load("res://Assets/Minesweeper_LAZARUS_21x21_mine_hit.png
 var texture_flag = load("res://Assets/Minesweeper_LAZARUS_21x21_flag.png")
 var texture_uncovered = load("res://Assets/Minesweeper_LAZARUS_21x21_unexplored.png")
 
+var custom = false
 
 func _ready():
 #	print(cells_grid)

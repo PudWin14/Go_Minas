@@ -51,6 +51,11 @@ size_flags_vertical = 3
 theme_override_font_sizes/font_size = 20
 text = "Hard"
 
+[node name="CustomButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Custom"
+
 [connection signal="pressed" from="VBoxContainer/EasyButton" to="." method="_on_easy_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/NormalButton" to="." method="_on_normal_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HardButton" to="." method="_on_hard_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/CustomButton" to="." method="_on_custom_button_pressed"]

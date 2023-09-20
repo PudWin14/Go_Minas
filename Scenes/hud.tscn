@@ -19,22 +19,22 @@ offset_right = 353.0
 offset_bottom = 134.0
 metadata/_edit_group_ = true
 
-[node name="MinusButtonContainer2" type="VBoxContainer" parent="HContainer"]
+[node name="MinusButtonContainer" type="VBoxContainer" parent="HContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 metadata/_edit_group_ = true
 
-[node name="MinusRowButton" type="Button" parent="HContainer/MinusButtonContainer2"]
+[node name="MinusRowButton" type="Button" parent="HContainer/MinusButtonContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 text = "-"
 
-[node name="MinusColButton" type="Button" parent="HContainer/MinusButtonContainer2"]
+[node name="MinusColButton" type="Button" parent="HContainer/MinusButtonContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 text = "-"
 
-[node name="MinusMineButton" type="Button" parent="HContainer/MinusButtonContainer2"]
+[node name="MinusMineButton" type="Button" parent="HContainer/MinusButtonContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 text = "-"
@@ -130,11 +130,11 @@ label_settings = SubResource("LabelSettings_jyan1")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[connection signal="pressed" from="HContainer/MinusButtonContainer2/MinusRowButton" to="." method="_on_minus_row_button_pressed"]
-[connection signal="pressed" from="HContainer/MinusButtonContainer2/MinusColButton" to="." method="_on_minus_col_button_pressed"]
-[connection signal="pressed" from="HContainer/MinusButtonContainer2/MinusMineButton" to="." method="_on_minus_mine_button_pressed"]
+[connection signal="pressed" from="HContainer/MinusButtonContainer/MinusRowButton" to="." method="_on_minus_row_button_pressed"]
+[connection signal="pressed" from="HContainer/MinusButtonContainer/MinusColButton" to="." method="_on_minus_col_button_pressed"]
+[connection signal="pressed" from="HContainer/MinusButtonContainer/MinusMineButton" to="." method="_on_minus_mine_button_pressed"]
 [connection signal="pressed" from="HContainer/PlusButtonContainer/PlusRowButton" to="." method="_on_plus_row_button_pressed"]
 [connection signal="pressed" from="HContainer/PlusButtonContainer/PlusColButton" to="." method="_on_plus_col_button_pressed"]
 [connection signal="pressed" from="HContainer/PlusButtonContainer/PlusMineButton" to="." method="_on_plus_mine_button_pressed"]
 [connection signal="pressed" from="NewGameButton" to="." method="_on_new_game_button_pressed"]
-[connection signal="pressed" from="BackButton" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="BackButton" to="." method="_on_back_btton_pressed"]

@@ -3,6 +3,12 @@ extends CanvasLayer
 
 signal new_game_pressed
 
+func _ready():
+	if not GlobalVariables.custom:
+		for button in $HContainer/MinusButtonContainer.get_children():
+			button.hide()
+		for button in $HContainer/PlusButtonContainer.get_children():
+			button.hide()
 
 func update_hud():
 	$HContainer/LabelContainer/ColsNum.text = "Cols: " + str(GlobalVariables.new_max_cols)
@@ -53,8 +59,10 @@ func hide_message():
 	$MessageLabel.hide()
 
 
-func _on_button_pressed():
-	get_tree().change_scene_to_file("res://Scenes/main.tscn")
-
 func update_time(time):
 	$TimeLabel.text = str(time)
+
+
+func _on_back_btton_pressed():
+	GlobalVariables.custom = false
+	get_tree().change_scene_to_file("res://Scenes/main.tscn")
