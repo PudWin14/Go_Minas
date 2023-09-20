@@ -34,3 +34,7 @@ func _on_custom_button_pressed():
 	GlobalVariables.new_game()
 	GlobalVariables.custom = true
 	get_tree().change_scene_to_file("res://Scenes/game.tscn")
+
+
+func _on_exit_button_pressed():
+	get_tree().quit()

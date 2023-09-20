@@ -55,7 +55,16 @@ text = "Hard"
 layout_mode = 2
 text = "Custom"
 
+[node name="ExitButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 222.0
+offset_top = 446.0
+offset_right = 337.0
+offset_bottom = 511.0
+text = "Exit"
+
 [connection signal="pressed" from="VBoxContainer/EasyButton" to="." method="_on_easy_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/NormalButton" to="." method="_on_normal_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HardButton" to="." method="_on_hard_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/CustomButton" to="." method="_on_custom_button_pressed"]
+[connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]
