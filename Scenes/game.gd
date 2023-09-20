@@ -45,6 +45,7 @@ func click_free_cell():
 		$HUD.update_time(time)
 	
 	if win_check():
+		$HUD.update_remaining_mines(0)
 		$Timer.stop()
 	
 
@@ -79,12 +80,14 @@ func display_cells(num_rows,num_cols):
 			new_cell.click.connect(click_free_cell)
 			new_cell.click_around.connect(click_around_cells)
 			new_cell.find_around_status.connect(find_status_around)
+			new_cell.count_flags.connect(update_flags_count)
 			
 			click_cell_main.connect(new_cell.click_cell_from_main)
 			win.connect(new_cell.win)
 			lose.connect(new_cell.lose)
 			
 			CellsGrid.add_child(new_cell)
+	$HUD.update_remaining_mines(GlobalVariables.NUM_MINES)
 
 
 
@@ -101,6 +104,7 @@ func new_game():
 	$Timer.stop()
 	$HUD.update_time(time)
 	CellsGrid.show()
+	
 
 
 
@@ -131,3 +135,16 @@ func find_status_around(pos: Vector2):
 	
 	if num_flags >= GlobalVariables.cells_grid[pos.x][pos.y]:
 		click_around_cells(pos)
+
+
+func update_flags_count():
+	$HUD.update_remaining_mines(GlobalVariables.NUM_MINES-count_flags())
+
+func count_flags():
+	var total_flags = 0
+	
+	for cell in CellsGrid.get_children():
+		if cell.status == 2:
+			total_flags += 1
+	
+	return total_flags

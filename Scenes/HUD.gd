@@ -62,6 +62,8 @@ func hide_message():
 func update_time(time):
 	$TimeLabel.text = str(time)
 
+func update_remaining_mines(remainig):
+	$RemainingLabel.text = "Mines Remainig: " + str(remainig)
 
 func _on_back_btton_pressed():
 	GlobalVariables.custom = false

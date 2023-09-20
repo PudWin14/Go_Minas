@@ -14,9 +14,10 @@ var MAX_COLS = GlobalVariables.MAX_COLS
 var status = 1
 
 signal game_over
-signal click()
+signal click
 signal click_around(pos : Vector2)
 signal find_around_status(positions : Vector2)
+signal count_flags
 
 
 func _process(delta):
@@ -36,6 +37,7 @@ func _on_toggled(_button_pressed):
 			status = 2
 		elif  status == 2:
 			status = 1
+		count_flags.emit()
 		
 	if Input.is_action_just_released("middle_click"):
 		if not status:
