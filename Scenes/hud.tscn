@@ -98,6 +98,7 @@ offset_bottom = 512.0
 text = "Back"
 
 [node name="MessageLabel" type="Label" parent="."]
+visible = false
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
