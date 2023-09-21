@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cmxc644cqh1ho"]
+[gd_scene load_steps=4 format=3 uid="uid://cmxc644cqh1ho"]
 
 [ext_resource type="Script" path="res://Scenes/HUD.gd" id="1_6yglb"]
 [ext_resource type="LabelSettings" uid="uid://32m2pxmmpg5w" path="res://Resources/hud_font.tres" id="2_fc7d2"]
+[ext_resource type="Texture2D" uid="uid://efynp4s0jo00" path="res://Assets/Minesweeper_LAZARUS_21x21_clock.png" id="3_fhgvs"]
 
 [node name="HUD" type="CanvasLayer"]
 process_mode = 3
@@ -110,20 +111,6 @@ label_settings = ExtResource("2_fc7d2")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TimeLabel" type="Label" parent="."]
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 232.0
-offset_top = -103.0
-offset_right = 280.0
-offset_bottom = -63.0
-grow_vertical = 2
-text = "0"
-label_settings = ExtResource("2_fc7d2")
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="RemainingLabel" type="Label" parent="."]
 offset_left = 106.0
 offset_top = 171.0
@@ -131,6 +118,25 @@ offset_right = 340.0
 offset_bottom = 210.0
 theme_override_font_sizes/font_size = 17
 text = "Mines Remainig: 99"
+label_settings = ExtResource("2_fc7d2")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TimeHBoxContainer" type="HBoxContainer" parent="."]
+offset_left = 192.0
+offset_top = 210.0
+offset_right = 250.0
+offset_bottom = 250.0
+metadata/_edit_group_ = true
+
+[node name="ClockTexture" type="TextureRect" parent="TimeHBoxContainer"]
+layout_mode = 2
+texture = ExtResource("3_fhgvs")
+expand_mode = 2
+
+[node name="TimeLabel" type="Label" parent="TimeHBoxContainer"]
+layout_mode = 2
+text = "0"
 label_settings = ExtResource("2_fc7d2")
 horizontal_alignment = 1
 vertical_alignment = 1
